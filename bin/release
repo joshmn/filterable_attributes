@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/filterable_attributes/version'
+
+version = FilterableAttributes::VERSION
+system("gem build filterable_attributes.gemspec")
+system("gem push filterable_attributes-#{version}.gem")
+system("rm filterable_attributes-#{version}.gem")
+system("git tag -a v#{version} -m 'version #{version}'")
+system("git push origin v#{version}")
